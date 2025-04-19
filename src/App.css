@@ -1,0 +1,10 @@
+@import "tailwindcss";
+/* Custom transitions */
+.transition {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  /* Form input focus styling */
+  input:focus, select:focus {
+    @apply ring-2 ring-blue-500 border-transparent outline-none;
+  }
