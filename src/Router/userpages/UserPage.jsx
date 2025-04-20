@@ -5,7 +5,7 @@ import UserNavbar from '../../components/user/UserNavbar';
 function UserPage(props) {
     return (
         <>
-        <header>
+        <header className='sticky top-0 z-50'>
             <UserNavbar/>
         </header>
         <Outlet/>
