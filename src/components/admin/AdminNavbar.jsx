@@ -17,7 +17,7 @@ const AdminNavbar = () => {
 
   const navLinks = [
     { name: 'Profile', to: '/admin/profile' },
-    { name: 'Add Foods', to: '/admin/add-foods' },
+    { name: 'Add Foods', to: 'addfoods' },
     { name: 'Add Restaurants', to: '/admin/add-restaurants' },
     { name: 'Get Users', to: '/admin/users' },
   ];

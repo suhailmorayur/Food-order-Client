@@ -12,6 +12,9 @@ import UserPage from './Router/userpages/UserPage.jsx';
 import AdminNavbar from './components/admin/AdminNavbar.jsx';
 import UserHome from './Router/userpages/UserHome.jsx';
 import MenuPage from './Router/userpages/MenuPage.jsx';
+import AddProduct from './Router/adminPages/AddProduct.jsx';
+import AdminHome from './Router/adminPages/AdminHome.jsx';
+import AdminPage from './Router/adminPages/AdminPage.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -30,9 +33,11 @@ createRoot(document.getElementById('root')).render(
 
       </Route>
 
-      <Route path="/admin/dashboard" element={<AdminNavbar />} />
-      {/* Add children here if needed */}
+      <Route />
+<Route  path="/admin/dashboard" element={<AdminPage />}>
+<Route path='addfoods' element={<AddProduct/>}/>
 
+</Route>
     </Routes>
   </BrowserRouter>
 </StrictMode>
