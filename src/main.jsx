@@ -15,6 +15,16 @@ import MenuPage from './Router/userpages/MenuPage.jsx';
 import AddProduct from './Router/adminPages/AddProduct.jsx';
 import AdminHome from './Router/adminPages/AdminHome.jsx';
 import AdminPage from './Router/adminPages/AdminPage.jsx';
+import FoodList from './Router/adminPages/FoodList.jsx';
+import EditProduct from './Router/adminPages/EditProduct.jsx';
+import AddRestaurant from './Router/adminPages/AddRestauarant.jsx';
+import RestaurantList from './Router/adminPages/RestaurantList.jsx';
+import EditRestaurant from './Router/adminPages/EditRestaurant.jsx';
+import RestaurantFoods from './Router/adminPages/RestaurantFoods.jsx';
+import ManageRestaurants from './Router/adminPages/ManageRestaurantsPage.jsx';
+import ManageFoodItems from './Router/adminPages/ManageFoodItems.jsx';
+import ViewUsers from './Router/adminPages/ViewUsers.jsx';
+import InviteCodePage from './Router/adminPages/InviteCodePage.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -35,7 +45,21 @@ createRoot(document.getElementById('root')).render(
 
       <Route />
 <Route  path="/admin/dashboard" element={<AdminPage />}>
+<Route index element={<AdminHome/>} />
+<Route path='manage-restaurants' element={<ManageRestaurants/>}/>
+<Route path='manage-fooditems' element={<ManageFoodItems/>}/>
+
+<Route path="add-restaurant" element={<AddRestaurant />} />
+
 <Route path='addfoods' element={<AddProduct/>}/>
+<Route path='footlist' element={<FoodList/>}/>
+<Route path='view-users' element={<ViewUsers/>}/>
+<Route path='invite-cods' element={<InviteCodePage/>}/>
+
+  <Route path="edit-food/:id" element={<EditProduct />} />
+  <Route path="restaurant-list" element={<RestaurantList />} />
+  <Route path="edit-restaurant/:id" element={<EditRestaurant />} />
+  <Route path="restaurants/:id/foods" element={<RestaurantFoods />} />
 
 </Route>
     </Routes>

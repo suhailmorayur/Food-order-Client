@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const AddProduct = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +13,8 @@ const AddProduct = () => {
   });
 
   const [restaurants, setRestaurants] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRestaurants = async () => {
@@ -18,12 +22,13 @@ const AddProduct = () => {
         const res = await axios.get("http://localhost:3000/api/restaurants", {
           withCredentials: true,
         });
-        setRestaurants(res.data.restaurants); // ✅ FIXED
+        setRestaurants(res.data.restaurants);
       } catch (err) {
         console.error("Failed to fetch restaurants", err);
+        toast.error("Failed to fetch restaurant list");
       }
     };
-  
+
     fetchRestaurants();
   }, []);
 
@@ -38,6 +43,7 @@ const AddProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const foodData = new FormData();
     foodData.append("name", formData.name);
@@ -52,17 +58,14 @@ const AddProduct = () => {
         withCredentials: true,
       });
 
-      alert("Food item added successfully!");
-      setFormData({
-        name: "",
-        description: "",
-        price: "",
-        restaurantId: "",
-        image: null,
+      navigate("/admin/dashboard/manage-fooditems", {
+        state: { message: "Food item added successfully!" },
       });
     } catch (err) {
       console.error("Error adding food:", err);
-      alert("Failed to add food");
+      toast.error("Failed to add food item");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -85,19 +88,19 @@ const AddProduct = () => {
         <div>
           <label className="block text-sm font-medium">Restaurant</label>
           <select
-  name="restaurantId"
-  value={formData.restaurantId}
-  onChange={handleChange}
-  required
-  className="w-full mt-1 px-4 py-2 border rounded-md"
->
-  <option value="">Select a restaurant</option>
-  {restaurants.map((res) => (
-    <option key={res._id} value={res._id}>
-      {res.name}
-    </option>
-  ))}
-</select>
+            name="restaurantId"
+            value={formData.restaurantId}
+            onChange={handleChange}
+            required
+            className="w-full mt-1 px-4 py-2 border rounded-md"
+          >
+            <option value="">Select a restaurant</option>
+            {restaurants.map((res) => (
+              <option key={res._id} value={res._id}>
+                {res.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>
@@ -138,8 +141,9 @@ const AddProduct = () => {
         <button
           type="submit"
           className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
+          disabled={loading}
         >
-          Add Food
+          {loading ? "Adding..." : "Add Food"}
         </button>
       </form>
     </div>

@@ -11,7 +11,7 @@ function PopularRestaurants() {
 
   const [products, loading, error] = useFetchData({
     method: "get",
-    url: `${import.meta.env.VITE_REACT_APP_API_URL}/api/restuarants/getAllRestaurants`,
+    url: `${import.meta.env.VITE_REACT_APP_API_URL}/api/restaurants`,
     transform: (data) => data.restaurants,
   });
 
