@@ -25,6 +25,10 @@ import ManageRestaurants from './Router/adminPages/ManageRestaurantsPage.jsx';
 import ManageFoodItems from './Router/adminPages/ManageFoodItems.jsx';
 import ViewUsers from './Router/adminPages/ViewUsers.jsx';
 import InviteCodePage from './Router/adminPages/InviteCodePage.jsx';
+import ManageCoupons from './Router/adminPages/ManageCoupons.jsx';
+import Restaurants from './Router/userpages/Restaurants.jsx';
+import FoodDetails from './Router/userpages/FoodDetails.jsx';
+import CartPage from './Router/userpages/CartPage.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -40,6 +44,10 @@ createRoot(document.getElementById('root')).render(
       <Route path="/user/dashboard" element={<UserPage />}>
         <Route index element={<UserHome />} />
         <Route path='menu' element={<MenuPage/>} />
+        <Route path="restaurants" element={<Restaurants />} />
+        <Route path="cart" element={<CartPage />} />
+
+        <Route path="food/:id" element={<FoodDetails />} />
 
       </Route>
 
@@ -55,6 +63,7 @@ createRoot(document.getElementById('root')).render(
 <Route path='footlist' element={<FoodList/>}/>
 <Route path='view-users' element={<ViewUsers/>}/>
 <Route path='invite-cods' element={<InviteCodePage/>}/>
+<Route path='coupon-cods' element={<ManageCoupons/>}/>
 
   <Route path="edit-food/:id" element={<EditProduct />} />
   <Route path="restaurant-list" element={<RestaurantList />} />

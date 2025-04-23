@@ -20,7 +20,7 @@ function ProductCard({ product }) {
         src={product.image}
         alt={product.name}
         effect="blur"
-        className=" object-cover rounded-t-lg"
+        className=" w-full aspect-[4/3] object-cover rounded-t-lg"
       />
       <div className="p-3">
         <h3 className="text-lg font-semibold">{product.name}</h3>

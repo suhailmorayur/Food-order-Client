@@ -1,15 +1,16 @@
 import { Link, Outlet } from 'react-router';
 import { Disclosure } from "@headlessui/react";
-import { FaHome, FaUtensils, FaStore, FaShoppingCart } from "react-icons/fa";
+import { FaHome, FaUtensils, FaStore, FaShoppingCart,FaPercentage } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
 import axios from 'axios';
 
 const navLinks = [
   { name: "Home", path: "/user/dashboard", icon: <FaHome /> },
   { name: "Browse Menu", path: "menu", icon: <FaUtensils /> },
-  { name: "Restaurants", path: "/user/restaurants", icon: <FaStore /> },
-  { name: "Cart", path: "/user/cart", icon: <FaShoppingCart /> },
- 
+  { name: "Restaurants", path: "restaurants", icon: <FaStore /> },
+  { name: "Cart", path: "cart", icon: <FaShoppingCart /> },
+  { name: "Coupons", path: "/user/coupons", icon: <FaPercentage /> },
+
 ];
 
 const UserNavbar = () => {

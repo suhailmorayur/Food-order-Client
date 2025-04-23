@@ -1,6 +1,7 @@
 import React from "react";
 import FoodItems from "../../components/user/PopularFoodItems";
 import PopularRestaurants from "../../components/user/PopularRestaurants";
+import OffersSection from "../../components/user/OffersSection";
 
 function UserHome() {
 
@@ -8,10 +9,10 @@ function UserHome() {
     <>
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <section>
-        <div
+<div
   className="grid lg:grid-cols-2 grid-cols-1 items-center px-10 gap-6 rounded-md bg-cover bg-center"
   style={{
-    backgroundImage: "url('/bg.jpg')", // Make sure this image exists in your public folder
+    backgroundImage: "url('/bg.png')", // Make sure this image exists in your public folder
   }}
 >            
         <div className="flex ">
@@ -39,7 +40,9 @@ function UserHome() {
 <section>
     <PopularRestaurants/>
 </section>
-
+<section>
+    <OffersSection/>
+</section>
     </main>
     </>
   );

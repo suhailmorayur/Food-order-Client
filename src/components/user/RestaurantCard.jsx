@@ -20,7 +20,7 @@ function RestaurantCard({ product }) {
         src={product.image}
         alt={product.name}
         effect="blur"
-        className=" object-cover rounded-t-lg"
+        className=" w-full aspect-[4/3] object-cover rounded-t-lg"
       />
       <div className="p-3 bg-amber-600 text-center">
         <h3 className="text-2xl text-white font-bold">{product.name}</h3>
