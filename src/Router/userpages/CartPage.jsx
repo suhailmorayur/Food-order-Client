@@ -3,13 +3,25 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { motion } from "framer-motion";
 
+// Razorpay script loader
+const loadRazorpayScript = () => {
+  return new Promise((resolve) => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+};
+
 const CartPage = () => {
   const [cart, setCart] = useState({ items: [], totalAmount: 0 });
   const [loading, setLoading] = useState(true);
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [finalAmount, setFinalAmount] = useState(0);
-  const [couponApplied, setCouponApplied] = useState(false);
+  const [loadingPayment, setLoadingPayment] = useState(false); // Loading state for payment
+  const [address, setAddress] = useState(""); // State for storing address
 
   const fetchCart = async () => {
     try {
@@ -65,17 +77,109 @@ const CartPage = () => {
         {
           code: couponCode,
           orderAmount: cart.totalAmount,
-          userId: cart.user, // if userId is stored in cart or from auth context
+          userId: cart.user,
         },
         { withCredentials: true }
       );
       setDiscount(res.data.discount);
       setFinalAmount(res.data.finalAmount);
-      setCouponApplied(true); // lock the input/button
       toast.success("Coupon applied!");
     } catch (err) {
       console.error(err);
       toast.error(err.response?.data?.message || "Failed to apply coupon");
+    }
+  };
+
+  const handlePayment = async () => {
+    if (!address.trim()) {
+      toast.error("Please enter a valid address");
+      return;
+    }
+
+    const res = await loadRazorpayScript();
+    if (!res) {
+      toast.error("Razorpay SDK failed to load");
+      return;
+    }
+
+    setLoadingPayment(true); // Show loading spinner when payment is processing
+
+    // ✅ Calculate totalAmount from cart items
+    const totalAmount = cart.items.reduce(
+      (acc, item) => acc + item.food.price * item.quantity,
+      0
+    );
+
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_REACT_APP_API_URL}/api/orders/create-razorpay-order`,
+        {
+          amount: finalAmount,
+          restaurantId: cart.items[0]?.food.restaurantId._id, // From first item
+          address: address, // Send dynamic address
+          coupon: couponCode || null,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      const options = {
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+        amount: data.amount,
+        currency: "INR",
+        name: "TastyNest",
+        description: "Food Order Payment",
+        order_id: data.orderId,
+        handler: async (response) => {
+          const verifyRes = await axios.post(
+            `${import.meta.env.VITE_REACT_APP_API_URL}/api/orders/verify-payment`,
+            {
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+              orderId: data.orderId,
+            },
+            { withCredentials: true }
+          );
+console.log(verifyRes);
+          if (verifyRes.data.success) {
+            const orderRes = await axios.post(
+              `${import.meta.env.VITE_REACT_APP_API_URL}/api/orders`,
+              {
+                address: address, // Send dynamic address
+                restaurantId: cart.items[0]?.food.restaurantId._id,
+                coupon: couponCode,
+                razorpayOrderId: data.orderId,
+              },
+              {
+                withCredentials: true,
+              }
+            );
+
+            toast.success("Order placed successfully!");
+            fetchCart();
+          } else {
+            toast.error("Payment verification failed");
+          }
+        },
+        prefill: {
+          name: "User",
+          email: "user@example.com",
+          contact: "9999999999",
+        },
+        theme: {
+          color: "#22c55e",
+        },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } catch (err) {
+      console.error(err);
+      toast.error("Payment failed");
+    } finally {
+      setLoadingPayment(false); // Hide loading spinner when payment process is complete
     }
   };
 
@@ -143,29 +247,22 @@ const CartPage = () => {
             </motion.div>
           ))}
 
-          {/* Coupon input and apply button */}
           <div className="mt-8">
             <input
               type="text"
               placeholder="Enter coupon code"
-              className="border p-2 rounded w-1/2 disabled:opacity-60"
+              className="border p-2 rounded w-1/2"
               value={couponCode}
               onChange={(e) => setCouponCode(e.target.value)}
-              disabled={couponApplied}
             />
             <button
               onClick={applyCoupon}
-              className="ml-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50"
-              disabled={couponApplied || !couponCode}
+              className="ml-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
             >
-              {couponApplied ? "Applied ✅" : "Apply"}
+              Apply
             </button>
-            {couponApplied && (
-              <p className="text-green-600 mt-2 font-medium">Coupon successfully applied ✅</p>
-            )}
           </div>
 
-          {/* Cart Summary */}
           <div className="text-right mt-6 text-xl font-bold">
             <p>Subtotal: ₹{cart.totalAmount}</p>
             {discount > 0 && (
@@ -174,10 +271,23 @@ const CartPage = () => {
             <p className="text-2xl mt-2">Total: ₹{finalAmount}</p>
           </div>
 
-          {/* Checkout button */}
+          <div className="mt-4">
+            <input
+              type="text"
+              className="border p-2 rounded w-full"
+              placeholder="Enter your address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+          </div>
+
           <div className="text-right mt-6">
-            <button className="bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600 transition-all">
-              Proceed to Checkout
+            <button
+              onClick={handlePayment}
+              className="bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600 transition-all"
+              disabled={loadingPayment}
+            >
+              {loadingPayment ? "Processing..." : "Proceed to Payment"}
             </button>
           </div>
         </div>
