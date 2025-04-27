@@ -29,6 +29,8 @@ import ManageCoupons from './Router/adminPages/ManageCoupons.jsx';
 import Restaurants from './Router/userpages/Restaurants.jsx';
 import FoodDetails from './Router/userpages/FoodDetails.jsx';
 import CartPage from './Router/userpages/CartPage.jsx';
+import ProfilePage from './Router/userpages/ProfilePage.jsx';
+import Orders from './Router/userpages/orders.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -46,6 +48,8 @@ createRoot(document.getElementById('root')).render(
         <Route path='menu' element={<MenuPage/>} />
         <Route path="restaurants" element={<Restaurants />} />
         <Route path="cart" element={<CartPage />} />
+        <Route path="profile" element={<ProfilePage />} />
+        <Route path="orders" element={<Orders />} />
 
         <Route path="food/:id" element={<FoodDetails />} />
 

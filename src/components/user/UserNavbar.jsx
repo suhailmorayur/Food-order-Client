@@ -10,6 +10,8 @@ const navLinks = [
   { name: "Restaurants", path: "restaurants", icon: <FaStore /> },
   { name: "Cart", path: "cart", icon: <FaShoppingCart /> },
   { name: "Coupons", path: "/user/coupons", icon: <FaPercentage /> },
+  { name: "profile", path: "profile", icon: <FaPercentage /> },
+  { name: "orders", path: "orders", icon: <FaPercentage /> },
 
 ];
 
@@ -119,7 +121,7 @@ const UserNavbar = () => {
               </Link>
             ))}
             <Link
-              to="/user/profile"
+              to="/dashboard/profile"
               className="block text-black border border-gray-300 px-3 py-2 rounded hover:bg-gray-100"
             >
               Profile

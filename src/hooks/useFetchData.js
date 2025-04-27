@@ -38,7 +38,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useFetchData = ({ url, method = "get", body = null, headers = {}, refresh, transform }) => {
+const useFetchData = ({ url, method = "get", body = null, headers = {}, refresh, transform,  }) => {
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -51,6 +51,7 @@ const useFetchData = ({ url, method = "get", body = null, headers = {}, refresh,
           url,
           headers,
           ...(body && { data: body }),
+          withCredentials: true,
         };
   
         const response = await axios(config);
