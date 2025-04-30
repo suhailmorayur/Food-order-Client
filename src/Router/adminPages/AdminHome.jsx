@@ -94,9 +94,15 @@ const AdminHome = () => {
           </Link>
           <Link
             to="/admin/dashboard/coupon-cods"
-            className="bg-fuchsia-900 text-white px-4 py-2 rounded-md hover:bg-yellow-600"
+            className="bg-amber-800 text-white px-4 py-2 rounded-md hover:bg-yellow-600"
           >
             Manage Coupon Cods
+          </Link>
+          <Link
+            to="/admin/dashboard/orders"
+            className="bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-yellow-600"
+          >
+            Manage Order
           </Link>
         </div>
       </div>

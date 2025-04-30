@@ -31,6 +31,7 @@ import FoodDetails from './Router/userpages/FoodDetails.jsx';
 import CartPage from './Router/userpages/CartPage.jsx';
 import ProfilePage from './Router/userpages/ProfilePage.jsx';
 import Orders from './Router/userpages/orders.jsx';
+import ManageOrders from './Router/adminPages/ManageOrders.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -60,6 +61,7 @@ createRoot(document.getElementById('root')).render(
 <Route index element={<AdminHome/>} />
 <Route path='manage-restaurants' element={<ManageRestaurants/>}/>
 <Route path='manage-fooditems' element={<ManageFoodItems/>}/>
+<Route path='orders' element={<ManageOrders/>}/>
 
 <Route path="add-restaurant" element={<AddRestaurant />} />
 

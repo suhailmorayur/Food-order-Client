@@ -9,3 +9,7 @@
   input:focus, select:focus {
     @apply ring-2 ring-blue-500 border-transparent outline-none;
   }
+  /* Add this in your global CSS file */
+.toast-container {
+  z-index: 9999 !important;
+}

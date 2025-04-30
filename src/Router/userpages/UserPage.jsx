@@ -1,6 +1,8 @@
 import React from 'react';
 import { Outlet } from "react-router";
 import UserNavbar from '../../components/user/UserNavbar';
+import Footer from '../../components/user/Footer';
+import BackToTopButton from '../../components/user/BackToTopButton';
 
 function UserPage(props) {
     return (
@@ -9,7 +11,10 @@ function UserPage(props) {
             <UserNavbar/>
         </header>
         <Outlet/>
-        <footer></footer>
+        <footer>
+            <Footer/>
+        </footer>
+        <BackToTopButton/>
         </>
     );
 }

@@ -3,10 +3,10 @@ import { useParams, useNavigate } from "react-router";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import axios from "axios";
+import { ChevronLeft, Plus, Minus, ShoppingCart } from "lucide-react"; // Optional icons
 
 function FoodDetails() {
   const { id } = useParams();
-  
   const [food, setFood] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -33,9 +33,9 @@ function FoodDetails() {
 
   const handleQuantityChange = (operation) => {
     if (operation === "increase") {
-      setQuantity((prevQuantity) => prevQuantity + 1);
+      setQuantity((prev) => prev + 1);
     } else if (operation === "decrease" && quantity > 1) {
-      setQuantity((prevQuantity) => prevQuantity - 1);
+      setQuantity((prev) => prev - 1);
     }
   };
 
@@ -55,69 +55,68 @@ function FoodDetails() {
     }
   };
 
-  if (loading) return <Skeleton height={300} />;
-  if (error) return <p className="text-red-500">{error}</p>;
+  if (loading) {
+    return (
+      <div className="max-w-6xl mx-auto p-6">
+        <Skeleton height={400} />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p className="text-center text-red-500 text-lg">{error}</p>;
+  }
 
   return (
-    <div className="max-w-6xl mx-auto p-4">
-      <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between">
-        {/* Food Image */}
-        <div className="w-full sm:w-1/3 mb-6 sm:mb-0">
+    <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className="flex flex-col md:flex-row items-center gap-10">
+        
+        {/* Image */}
+        <div className="w-full md:w-1/2">
           <img
             src={food?.image || "/default-food.jpg"}
             alt={food?.name}
-            className="w-full h-80 object-cover rounded-lg"
+            className="w-full h-96 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
           />
         </div>
 
-        {/* Food Details */}
-        <div className="sm:w-2/3 pl-4">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-2">
-            {food?.name}
-          </h2>
-          <p className="text-gray-500 mb-4">{food?.description}</p>
-          <p className="text-orange-600 font-bold text-lg mb-4">
-            ₹{food?.price}
-          </p>
+        {/* Details */}
+        <div className="w-full md:w-1/2 flex flex-col gap-6">
+          <h2 className="text-4xl font-bold text-gray-800">{food?.name}</h2>
+          <p className="text-gray-500">{food?.description}</p>
+          <p className="text-2xl font-semibold text-orange-500">₹{food?.price}</p>
 
-          {/* Quantity Adjustment */}
-          <div className="flex items-center mb-6">
+          {/* Quantity selector */}
+          <div className="flex items-center space-x-4">
             <button
               onClick={() => handleQuantityChange("decrease")}
-              className="px-3 py-2 bg-gray-300 text-gray-700 rounded-l-md"
+              className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition"
             >
-              -
+              <Minus size={20} />
             </button>
-            <input
-              type="text"
-              value={quantity}
-              readOnly
-              className="w-16 text-center border-t border-b border-gray-300 py-2"
-            />
+            <span className="text-lg font-medium">{quantity}</span>
             <button
               onClick={() => handleQuantityChange("increase")}
-              className="px-3 py-2 bg-gray-300 text-gray-700 rounded-r-md"
+              className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition"
             >
-              +
+              <Plus size={20} />
             </button>
           </div>
 
-          {/* Add to Cart Button */}
-          <div className="mt-6 w-full sm:w-auto flex justify-center">
-            <button
-              className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-md font-medium w-full sm:w-auto"
-              onClick={handleAddToCart}
-            >
-              Add to Cart
-            </button>
-          </div>
+          {/* Add to cart */}
+          <button
+            onClick={handleAddToCart}
+            className="flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white py-3 px-6 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105"
+          >
+            <ShoppingCart size={20} /> Add to Cart
+          </button>
 
-          {/* Back to Restaurants Button */}
+          {/* Back */}
           <button
             onClick={() => navigate(-1)}
-            className="mt-4 text-sm text-blue-500 hover:underline"
+            className="flex items-center gap-2 mt-4 text-blue-600 hover:underline transition"
           >
-            Back to restaurants
+            <ChevronLeft size={18} /> Back to Restaurants
           </button>
         </div>
       </div>
