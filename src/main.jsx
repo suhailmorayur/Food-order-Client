@@ -2,7 +2,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { BrowserRouter , Routes,Route} from "react-router";
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import App from './App.jsx'
 import LayOut from './Router/LayOut.jsx';
 import Home from './Router/Home.jsx';
@@ -32,8 +33,14 @@ import CartPage from './Router/userpages/CartPage.jsx';
 import ProfilePage from './Router/userpages/ProfilePage.jsx';
 import Orders from './Router/userpages/orders.jsx';
 import ManageOrders from './Router/adminPages/ManageOrders.jsx';
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+import ContactPage from './Router/userpages/ContactPage.jsx';
+import ManageContacts from './Router/adminPages/ManageContacts.jsx';
 
 createRoot(document.getElementById('root')).render(
+  <Provider store={store}>
+
   <StrictMode>
   <BrowserRouter>
     <Routes>
@@ -51,6 +58,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="cart" element={<CartPage />} />
         <Route path="profile" element={<ProfilePage />} />
         <Route path="orders" element={<Orders />} />
+        <Route path="contact" element={<ContactPage />} />
 
         <Route path="food/:id" element={<FoodDetails />} />
 
@@ -62,6 +70,7 @@ createRoot(document.getElementById('root')).render(
 <Route path='manage-restaurants' element={<ManageRestaurants/>}/>
 <Route path='manage-fooditems' element={<ManageFoodItems/>}/>
 <Route path='orders' element={<ManageOrders/>}/>
+<Route path='manage-contact-messages' element={<ManageContacts/>}/>
 
 <Route path="add-restaurant" element={<AddRestaurant />} />
 
@@ -80,5 +89,6 @@ createRoot(document.getElementById('root')).render(
     </Routes>
   </BrowserRouter>
 </StrictMode>
+</Provider>
 
 )

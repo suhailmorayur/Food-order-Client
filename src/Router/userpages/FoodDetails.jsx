@@ -4,6 +4,8 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import axios from "axios";
 import { ChevronLeft, Plus, Minus, ShoppingCart } from "lucide-react"; // Optional icons
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/slices/cartSlice";
 
 function FoodDetails() {
   const { id } = useParams();
@@ -12,6 +14,7 @@ function FoodDetails() {
   const [error, setError] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchFoodDetails = async () => {
@@ -41,17 +44,10 @@ function FoodDetails() {
 
   const handleAddToCart = async () => {
     try {
-      await axios.post(
-        `${import.meta.env.VITE_REACT_APP_API_URL}/api/cart`,
-        {
-          foodId: food._id,
-          quantity: quantity,
-        },
-        { withCredentials: true }
-      );
+      await dispatch(addToCart({ foodId: food._id, quantity: quantity })).unwrap();
       navigate("/user/dashboard/cart");
     } catch (error) {
-      console.error("Failed to add to cart:", error.message);
+      console.error("Failed to add to cart:", error);
     }
   };
 

@@ -7,98 +7,107 @@ import HowItWorks from "../../components/user/HowItworks";
 import WhyChooseUs from "../../components/user/WhyChooseUs ";
 import CallToAction from "../../components/user/CallToAction";
 import FoodBackgroundCTA from "../../components/user/FoodBackgroundCTA";
-import Footer from "../../components/user/Footer";
-import BackToTopButton from "../../components/user/BackToTopButton";
+
 
 function UserHome() {
-  const handleScrollToSection = (section) => {
-    const element = document.getElementById(section);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
     <>
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <section>
+          <div className="hidden lg:block">
           <div
-            className="grid lg:grid-cols-2 grid-cols-1 items-center px-10 gap-6 rounded-md bg-cover bg-center"
-            style={{
-              backgroundImage: "url('/bg.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
-            }}
-          >
-            <div className="flex justify-center lg:justify-start">
-              <img className="w-full max-w-xs" src="/Hero2.png" alt="Food and Restaurant" />
+  className="grid lg:grid-cols-2 grid-cols-1 items-center px-10 gap-6 rounded-md bg-cover bg-center "
+
+
+>       
+            
+            <div className="flex flex-col items-center lg:items-start gap-5">
+
+            <h1 className="lg:text-7xl text-3xl font-bold">
+  <span className="text-black ">Feast Your Senses,</span><br />
+  <span className="text-orange-500">Fast and Fresh</span>
+</h1>
+<p className="font-medium lg:text-xl">Our job is to filling your tummy with delicious food and  with fast and free delivery</p>
+<div>
+<button className="bg-orange-500 text-white py-3 px-5 hover:bg-orange-300 rounded-lg ">Get Start</button>
+
+</div>
             </div>
 
-            <div>
-              <p className="font-extralight text-white">Order Restaurant food, takeaway and groceries.</p>
+            <div className=" hidden lg:block ">
+            
+            <img className="" src="/Component 1.png" alt="" />
 
-              <h1 className="text-4xl sm:text-5xl font-bold text-white">
-                <span className="text-black">Feast Your Senses,</span><br />
-                <span className="text-orange-500">Fast and Fresh</span>
-              </h1>
-
-              {/* Buttons for Foods and Restaurants */}
-              <div className="mt-6 space-x-4 flex justify-center lg:justify-start">
-                <button
-                  onClick={() => handleScrollToSection("food-section")}
-                  className="px-6 py-3 bg-orange-500 text-white font-semibold rounded-md shadow-md hover:bg-orange-600 transition-all duration-300"
-                >
-                  Browse Foods
-                </button>
-                <button
-                  onClick={() => handleScrollToSection("restaurant-section")}
-                  className="px-6 py-3 bg-orange-500 text-white font-semibold rounded-md shadow-md hover:bg-orange-600 transition-all duration-300"
-                >
-                  Browse Restaurants
-                </button>
-              </div>
             </div>
+           
+        </div>
           </div>
+
+
+{/* mobile */}
+
+<div
+  className="grid lg:grid-cols-2 grid-cols-1 items-center px-10 gap-6 rounded-md bg-center 
+             bg-no-repeat h-80 bg-cover lg:hidden"
+  style={{
+    backgroundImage: 'url("/mobile.png")',
+  
+  }}
+>
+  <div className="flex flex-col items-center lg:items-start gap-5">
+    <h1 className="lg:text-7xl text-3xl font-bold">
+      <span className="text-black">Feast Your Senses,</span><br />
+      <span className="text-orange-500">Fast and Fresh</span>
+    </h1>
+    <p className="font-medium lg:text-xl">
+      Our job is to filling your tummy with delicious food and with fast and free delivery
+    </p>
+    <div>
+      <button className="bg-orange-500 text-white py-3 px-5 hover:bg-orange-300 rounded-lg">
+        Get Start
+      </button>
+    </div>
+  </div>
+
+  <div className="hidden lg:block">
+    <img className="" src="/Component 1.png" alt="" />
+  </div>
+</div>
+
+
         </section>
 
-        {/* About Us Section */}
-        <section id="about-us-section">
-          <AboutUs />
-        </section>
-
-        {/* Food Items Section */}
-        <section id="food-section">
-          <FoodItems />
-        </section>
-
-        {/* Popular Restaurants Section */}
-        <section id="restaurant-section">
-          <PopularRestaurants />
-        </section>
+<section>
+  <AboutUs/>
+</section>
 
         <section>
-          <OffersSection />
+            <FoodItems/>
         </section>
 
-        <section>
-          <HowItWorks />
-        </section>
+<section>
+    <PopularRestaurants/>
+</section>
+<section>
 
-        <section>
-          <WhyChooseUs />
-        </section>
+    <OffersSection/>
+</section>
 
-        <section>
-          <CallToAction />
-        </section>
+<section>
+  <HowItWorks/>
+</section>
+<section>
+  <WhyChooseUs/>
+</section>
+<section>
+  <CallToAction/>
+</section>
+<section>
+  <FoodBackgroundCTA/>
+</section>
 
-        <section>
-          <FoodBackgroundCTA />
-        </section>
-
-     
-      </main>
+    </main>
     </>
   );
 }

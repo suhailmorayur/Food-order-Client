@@ -67,25 +67,19 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { motion } from "framer-motion";
 import { useNavigate, Link } from "react-router";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/slices/cartSlice";
 
 function ProductCard({ product }) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleAddToCart = async () => {
     try {
-      await axios.post(
-        `${import.meta.env.VITE_REACT_APP_API_URL}/api/cart`,
-        {
-          foodId: product._id,
-          quantity: 1,
-        },
-        { withCredentials: true }
-      );
-      console.log(product._id);
+      await dispatch(addToCart({ foodId: product._id, quantity: 1 })).unwrap();
       navigate("/user/dashboard/cart");
     } catch (error) {
-      console.error("Failed to add to cart:", error.message);
+      console.error("Failed to add to cart:", error);
     }
   };
 
@@ -137,3 +131,4 @@ function ProductCard({ product }) {
 }
 
 export default ProductCard;
+
