@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import useFetchData from "../../hooks/useFetchData";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import RestaurantCard from "./restaurantCard";
+import RestaurantCard from "./RestaurantCard.jsx";
 
 function PopularRestaurants() {
   const [showAll, setShowAll] = useState(false);
