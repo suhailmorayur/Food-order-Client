@@ -2,15 +2,12 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { BrowserRouter , Routes,Route} from "react-router";
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import App from './App.jsx'
 import LayOut from './Router/LayOut.jsx';
 import Home from './Router/Home.jsx';
 import LoginPage from './Router/LoginPage.jsx';
 import SignupPage from './Router/SignupPage.jsx';
 import UserPage from './Router/userpages/UserPage.jsx';
-import AdminNavbar from './components/admin/AdminNavbar.jsx';
 import UserHome from './Router/userpages/UserHome.jsx';
 import MenuPage from './Router/userpages/MenuPage.jsx';
 import AddProduct from './Router/adminPages/AddProduct.jsx';
@@ -30,7 +27,7 @@ import ManageCoupons from './Router/adminPages/ManageCoupons.jsx';
 import Restaurants from './Router/userpages/Restaurants.jsx';
 import FoodDetails from './Router/userpages/FoodDetails.jsx';
 import CartPage from './Router/userpages/CartPage.jsx';
-import ProfilePage from './Router/userpages/ProfilePage.jsx';
+import ProfilePage from './Router/userpages/ProfilePage.jsx'
 import Orders from './Router/userpages/Orders.jsx';
 import ManageOrders from './Router/adminPages/ManageOrders.jsx';
 import { Provider } from "react-redux";
