@@ -31,7 +31,7 @@ import Restaurants from './Router/userpages/Restaurants.jsx';
 import FoodDetails from './Router/userpages/FoodDetails.jsx';
 import CartPage from './Router/userpages/CartPage.jsx';
 import ProfilePage from './Router/userpages/ProfilePage.jsx';
-import Orders from './Router/userpages/orders.jsx';
+import Orders from './Router/userpages/Orders.jsx';
 import ManageOrders from './Router/adminPages/ManageOrders.jsx';
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
