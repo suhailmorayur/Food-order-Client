@@ -10,13 +10,13 @@ const EditRestaurant = () => {
     location: "",
     description: "",
     openingHours: "",
-    image: "", // Optional new image URL or File
+    image: "", 
   });
 
   useEffect(() => {
     const fetchRestaurant = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/restaurants/${id}`, {
+        const res = await axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}/api/restaurants/${id}`, {
           withCredentials: true,
         });
         const r = res.data.restaurant;
@@ -25,7 +25,7 @@ const EditRestaurant = () => {
           location: r.location || "",
           description: r.description || "",
           openingHours: r.openingHours || "",
-          image: "", // Leave blank; only used if uploading new one
+          image: "", 
         });
       } catch (err) {
         console.error("Error fetching restaurant", err);
@@ -54,7 +54,7 @@ const EditRestaurant = () => {
       data.append("openingHours", formData.openingHours);
       if (formData.image) data.append("image", formData.image);
 
-      await axios.put(`http://localhost:3000/api/restaurants/updateRestaurant/${id}`, data, {
+      await axios.put(`${import.meta.env.VITE_REACT_APP_API_URL}/api/restaurants/updateRestaurant/${id}`, data, {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" },
       });

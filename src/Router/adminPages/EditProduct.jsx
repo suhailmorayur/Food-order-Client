@@ -18,7 +18,7 @@ const EditProduct = () => {
 
   const fetchFood = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/api/fooditems/${id}`, {
+      const res = await axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}/api/fooditems/${id}`, {
         withCredentials: true,
       });
 
@@ -62,7 +62,7 @@ const EditProduct = () => {
     if (formData.image) foodData.append("image", formData.image);
 
     try {
-      await axios.put(`http://localhost:3000/api/fooditems/${id}`, foodData, {
+      await axios.put(`${import.meta.env.VITE_REACT_APP_API_URL}/api/fooditems/${id}`, foodData, {
         headers: { "Content-Type": "multipart/form-data" },
         withCredentials: true,
       });

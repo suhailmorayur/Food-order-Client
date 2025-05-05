@@ -14,7 +14,7 @@ const ManageFoodItems = () => {
 
   const fetchFoods = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/fooditems", {
+      const res = await axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}/api/fooditems`, {
         withCredentials: true,
       });
       setFoods(res.data.foodItems);
@@ -30,7 +30,7 @@ const ManageFoodItems = () => {
     if (!window.confirm("Are you sure you want to delete this food item?")) return;
 
     try {
-      await axios.delete(`http://localhost:3000/api/fooditems/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_REACT_APP_API_URL}/api/fooditems/${id}`, {
         withCredentials: true,
       });
       setFoods((prev) => prev.filter((item) => item._id !== id));

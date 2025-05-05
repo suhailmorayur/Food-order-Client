@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import axios from "axios";
-import { motion } from "framer-motion"; // for animations
+import { motion } from "framer-motion"; 
 
 const RestaurantFoods = () => {
   const { id } = useParams(); // restaurant ID
   const navigate = useNavigate();
   const [foods, setFoods] = useState([]);
-  const [loading, setLoading] = useState(true); // To handle loading state
-  const [deleteStatus, setDeleteStatus] = useState(""); // To store delete confirmation status
+  const [loading, setLoading] = useState(true); 
+  const [deleteStatus, setDeleteStatus] = useState(""); 
 
   const fetchFoods = async () => {
     try {
@@ -39,11 +39,10 @@ const RestaurantFoods = () => {
         `${import.meta.env.VITE_REACT_APP_API_URL}/api/fooditems/${foodId}`,
         { withCredentials: true }
       );
-      setDeleteStatus("Food item deleted successfully!"); // Set confirmation message
+      setDeleteStatus("Food item deleted successfully!"); 
       setTimeout(() => {
         setDeleteStatus(""); // Reset confirmation message after 3 seconds
       }, 3000);
-      // Remove food item from the list locally without re-fetching
       setFoods((prevFoods) => prevFoods.filter((food) => food._id !== foodId));
     } catch (err) {
       console.error("Delete failed:", err);

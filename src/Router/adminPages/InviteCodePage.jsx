@@ -37,7 +37,7 @@ const InviteCodePage = () => {
         { withCredentials: true }
       );
       setGeneratedCode(res.data);
-      fetchInviteCodes(); // Refresh list
+      fetchInviteCodes(); 
       setError("");
     } catch (err) {
       setError("Failed to generate invite code");

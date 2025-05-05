@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
-import { toast, ToastContainer } from "react-toastify"; // Import react-toastify
-import "react-toastify/dist/ReactToastify.css"; // Import the styles for toast notifications
+import { toast, ToastContainer } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
 
 const RestaurantList = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -31,14 +31,14 @@ const RestaurantList = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:3000/api/restaurants/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_REACT_APP_API_URL}/api/restaurants/${id}`, {
         withCredentials: true,
       });
-      toast.success("Restaurant deleted successfully!"); // Show success toast
-      fetchRestaurants(); // Refresh list after deletion
+      toast.success("Restaurant deleted successfully!"); 
+      fetchRestaurants(); 
     } catch (err) {
       console.error("Delete failed:", err);
-      toast.error("Failed to delete restaurant"); // Show error toast
+      toast.error("Failed to delete restaurant"); 
     }
   };
 

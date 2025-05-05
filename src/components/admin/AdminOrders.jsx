@@ -6,13 +6,12 @@ import {
   Paper, Button, Select, MenuItem, CircularProgress, Typography
 } from '@mui/material';
 import toast, { Toaster } from 'react-hot-toast';
-import { motion } from 'framer-motion'; // for smooth animations
+import { motion } from 'framer-motion'; 
 
 const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch all orders
   useEffect(() => {
     const fetchOrders = async () => {
       try {
@@ -77,7 +76,7 @@ const AdminOrders = () => {
         <Typography variant="h4" gutterBottom component="div" sx={{
           padding: 2,
           fontWeight: 'bold',
-          color: '#4F46E5', // Indigo color
+          color: '#4F46E5', 
           textAlign: 'center',
           letterSpacing: 1,
         }}>

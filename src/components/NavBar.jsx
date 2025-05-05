@@ -24,7 +24,7 @@ function Navbar(props) {
         {/* Mobile Menu Button */}
         <div className="md:hidden">
             <button className="text-white">
-                <i className="fas fa-bars"></i> {/* Use an icon library for the hamburger menu */}
+                <i className="fas fa-bars"></i> 
             </button>
         </div>
     </nav>

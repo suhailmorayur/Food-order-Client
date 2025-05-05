@@ -6,7 +6,7 @@ import axios from 'axios';
 const AdminNavbar = () => {
   const handleLogout = async () => {
     try {
-      await axios.get("http://localhost:3000/api/admin/logout", {
+      await axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}/api/admin/logout` , {
         withCredentials: true,
       });
       window.location = "/login";

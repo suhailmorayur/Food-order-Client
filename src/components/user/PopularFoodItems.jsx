@@ -6,7 +6,7 @@ import ProductCard from "../ProductCard";
 
 function FoodItems() {
   const [showAll, setShowAll] = useState(false);
-  const containerRef = useRef(null); // 👈 reference for scrolling
+  const containerRef = useRef(null); 
 
   const [products, loading, error] = useFetchData({
     method: "get",
@@ -16,7 +16,6 @@ function FoodItems() {
 
   const handleToggle = () => {
     if (showAll) {
-      // Scroll to top when collapsing
       containerRef.current.scrollIntoView({ behavior: "smooth" });
     }
     setShowAll(!showAll);

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router";
-import { motion } from "framer-motion"; // Import framer-motion for animations
+import { motion } from "framer-motion";
 
 const FoodList = () => {
   const [foods, setFoods] = useState([]);
-  const [loading, setLoading] = useState(true); // To handle loading state
-  const [deleteStatus, setDeleteStatus] = useState(""); // Confirmation message after delete
+  const [loading, setLoading] = useState(true); 
+  const [deleteStatus, setDeleteStatus] = useState(""); 
 
   const fetchFoods = async () => {
     try {
@@ -24,12 +24,12 @@ const FoodList = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this item?")) return;
     try {
-      await axios.delete(`http://localhost:3000/api/fooditems/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_REACT_APP_API_URL}/api/fooditems/${id}`, {
         withCredentials: true,
       });
-      setDeleteStatus("Food item deleted successfully!"); // Set delete confirmation message
-      setTimeout(() => setDeleteStatus(""), 3000); // Reset the confirmation message after 3 seconds
-      setFoods(foods.filter((item) => item._id !== id)); // Remove the item from state
+      setDeleteStatus("Food item deleted successfully!"); 
+      setTimeout(() => setDeleteStatus(""), 3000); 
+      setFoods(foods.filter((item) => item._id !== id)); 
     } catch (err) {
       console.error("Error deleting food item:", err);
       alert("Failed to delete item");

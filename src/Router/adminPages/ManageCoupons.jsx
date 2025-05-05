@@ -18,7 +18,6 @@ function ManageCoupons() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // Fetch all coupons on page load
   const fetchCoupons = async () => {
     setLoading(true);
     try {
@@ -53,7 +52,7 @@ function ManageCoupons() {
         { withCredentials: true }
       );
       toast.success("Coupon added successfully!");
-      fetchCoupons(); // Refresh the coupon list
+      fetchCoupons(); 
     } catch (err) {
       toast.error("Failed to add coupon.");
     }
@@ -67,7 +66,7 @@ function ManageCoupons() {
         { withCredentials: true }
       );
       toast.success("Coupon deleted successfully!");
-      fetchCoupons(); // Refresh the coupon list
+      fetchCoupons(); 
     } catch (err) {
       toast.error("Failed to delete coupon.");
     }

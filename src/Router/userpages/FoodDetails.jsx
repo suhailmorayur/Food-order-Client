@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import axios from "axios";
-import { ChevronLeft, Plus, Minus, ShoppingCart } from "lucide-react"; // Optional icons
+import { ChevronLeft, Plus, Minus, ShoppingCart } from "lucide-react"; 
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/slices/cartSlice";
 
@@ -67,7 +67,6 @@ function FoodDetails() {
     <div className="max-w-6xl mx-auto px-4 py-8">
       <div className="flex flex-col md:flex-row items-center gap-10">
         
-        {/* Image */}
         <div className="w-full md:w-1/2">
           <img
             src={food?.image || "/default-food.jpg"}
@@ -76,13 +75,11 @@ function FoodDetails() {
           />
         </div>
 
-        {/* Details */}
         <div className="w-full md:w-1/2 flex flex-col gap-6">
           <h2 className="text-4xl font-bold text-gray-800">{food?.name}</h2>
           <p className="text-gray-500">{food?.description}</p>
           <p className="text-2xl font-semibold text-orange-500">₹{food?.price}</p>
 
-          {/* Quantity selector */}
           <div className="flex items-center space-x-4">
             <button
               onClick={() => handleQuantityChange("decrease")}

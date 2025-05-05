@@ -9,31 +9,13 @@ const LoginPage = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const response = await fetch('http://localhost:3000/api/user/login', {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({ email, password, role }),
-//       });
-
-//       const data = await response.json();
-//       if (!response.ok) throw new Error(data.message);
-
-//       // Redirect based on role
-//       role === 'admin' ? navigate('/admin/dashboard') : navigate('/user/dashboard');
-//     } catch (err) {
-//       setError(err.message);
-//     }
-//   };
 
 const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const endpoint = role === 'admin'
-        ? 'http://localhost:3000/api/admin/login'
-        : 'http://localhost:3000/api/user/login';
+        ? `${import.meta.env.VITE_REACT_APP_API_URL}/api/admin/login`
+        : `${import.meta.env.VITE_REACT_APP_API_URL}/api/user/login`;
     
       const response = await axios.post(
         endpoint,

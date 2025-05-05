@@ -1,19 +1,18 @@
 import { Link } from 'react-router';
 import { Disclosure } from '@headlessui/react';
-import { FaHome, FaUtensils, FaStore, FaShoppingCart, FaPercentage, FaUser } from 'react-icons/fa';
+import { FaHome,FaShoppingBag, FaPhoneAlt, FaUtensils, FaStore, FaShoppingCart, FaPercentage, FaUser } from 'react-icons/fa';
 import { HiMenu, HiX } from 'react-icons/hi';
 import axios from 'axios';
 import { useSelector } from "react-redux";
-import { selectCartCount } from "../../redux/slices/cartSlice"; // Adjust path as needed
-
+import { selectCartCount } from "../../redux/slices/cartSlice"; 
 const navLinks = [
   { name: "Home", path: "/user/dashboard", icon: <FaHome /> },
   { name: "Browse Menu", path: "menu", icon: <FaUtensils /> },
   { name: "Restaurants", path: "restaurants", icon: <FaStore /> },
-  { name: "Coupons", path: "/user/coupons", icon: <FaPercentage /> },
+  { name: "Coupons", path: "coupons", icon: <FaPercentage /> },
   { name: "Profile", path: "profile", icon: <FaUser /> },
-  { name: "Orders", path: "orders", icon: <FaPercentage /> },
-  { name: "ContactUs", path: "contact", icon: <FaPercentage /> },
+  { name: "Orders", path: "orders", icon: <FaShoppingBag /> },
+  { name: "Contact Us", path: "contact", icon: <FaPhoneAlt /> },
 
 ];
 
@@ -22,7 +21,7 @@ const UserNavbar = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get("http://localhost:3000/api/user/logout", {
+      await axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}/api/user/logout`, {
         withCredentials: true,
       });
       window.location = "/login";
@@ -53,7 +52,7 @@ const UserNavbar = () => {
                         key={link.name}
                         to={link.path}
                         className={`relative flex items-center px-3 py-2 rounded text-sm font-medium 
-                          ${location.pathname === link.path ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600'}`}
+                          ${location.pathname === link.path ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-orange-600'}`}
                       >
                         {link.icon && <span className="mr-2">{link.icon}</span>}
                         {link.name}
@@ -61,7 +60,6 @@ const UserNavbar = () => {
                     ))}
                   </div>
 
-                  {/* Profile + Logout - Right */}
                   <div className="hidden md:flex items-center space-x-4">
                   <Link to="cart" className="relative flex flex-col items-center text-gray-700 hover:text-blue-600">
   <FaShoppingCart size={15} />

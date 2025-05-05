@@ -37,6 +37,7 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import ContactPage from './Router/userpages/ContactPage.jsx';
 import ManageContacts from './Router/adminPages/ManageContacts.jsx';
+import CouponPage from './Router/userpages/CouponPage.jsx';
 
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
@@ -59,6 +60,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="profile" element={<ProfilePage />} />
         <Route path="orders" element={<Orders />} />
         <Route path="contact" element={<ContactPage />} />
+        <Route path="coupons" element={<CouponPage />} />
 
         <Route path="food/:id" element={<FoodDetails />} />
 

@@ -47,14 +47,7 @@ function Home(props) {
       </div>
     </div>
 
-    {/* Floating Elements */}
-    <div className="absolute bottom-0 right-0 z-10 hidden w-1/3 md:block">
-      <img
-        src="/delivery-bike.png" // Replace with your asset
-        alt="Delivery"
-        className="animate-float"
-      />
-    </div>
+
   </section>
     );
 }

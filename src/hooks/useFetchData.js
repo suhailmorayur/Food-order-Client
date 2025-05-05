@@ -1,39 +1,3 @@
-// import { useEffect, useState } from "react";
-// import axios from "axios";
-
-// const useFetchData = ({ method, url, body = null, headers = {} }) => {
-//   const [data, setData] = useState(null);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       setLoading(true);
-//       try {
-//         const response = await axios({
-//           method,
-//           url,
-//           data: body,
-//           headers,
-//         });
-//         setData(response.data);
-//         setError(null);
-//       } catch (err) {
-//         console.error("Error fetching:", err);
-//         setError(err);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     if (url && method) fetchData();
-//   }, [method, url, body, headers]);
-
-//   return { data, loading, error };
-// };
-
-// export default useFetchData;
-
 
 import { useEffect, useState } from "react";
 import axios from "axios";

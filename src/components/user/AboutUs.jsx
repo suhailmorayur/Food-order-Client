@@ -21,7 +21,7 @@ const AboutUs = () => {
 
   return (
     <section className="relative bg-white overflow-hidden py-20 px-6 md:px-20">
-      {/* Moving shapes background */}
+    
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         <motion.div
           className="absolute w-72 h-72 bg-indigo-100 rounded-full top-[-100px] left-[-100px]"
@@ -35,9 +35,9 @@ const AboutUs = () => {
         />
       </div>
 
-      {/* Content */}
+     
       <div className="relative max-w-7xl mx-auto z-10">
-        {/* Intro */}
+      
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}
@@ -52,7 +52,6 @@ const AboutUs = () => {
             Delivering happiness, connecting food lovers with the best meals from their favorite local restaurants.
           </p>
         </motion.div>
-
         {/* Animated Counters */}
         <motion.div 
           className="grid md:grid-cols-3 gap-12 text-center mb-16"

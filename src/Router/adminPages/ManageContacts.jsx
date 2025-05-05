@@ -1,4 +1,3 @@
-// src/pages/admin/ManageContacts.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -10,7 +9,7 @@ const ManageContacts = () => {
     const fetchMessages = async () => {
       try {
         const res = await axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}/api/contact`, {
-          withCredentials: true, // needed if cookies/token stored in browser
+          withCredentials: true, 
         });
         setMessages(res.data);
       } catch (err) {

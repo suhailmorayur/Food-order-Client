@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-
+import {Link} from "react-router"
 const Footer = () => {
   return (
     <motion.footer
@@ -24,10 +24,11 @@ const Footer = () => {
         <div>
           <h3 className="text-xl font-semibold text-white mb-4">Quick Links</h3>
           <ul className="space-y-2">
-            <li><a href="#popular-restaurants" className="hover:text-white">Restaurants</a></li>
-            <li><a href="#popular-foods" className="hover:text-white">Popular Foods</a></li>
-            <li><a href="#coupon" className="hover:text-white">Coupon Codes</a></li>
-            <li><a href="#contact" className="hover:text-white">Contact Us</a></li>
+            <li><Link  className="hover:text-white" to={'/user/dashboard/restaurants'}>Restaurants</Link> </li>
+            <li><Link  className="hover:text-white" to={'/user/dashboard/menu'}>Popular Foods</Link></li>
+            <li><Link  className="hover:text-white" to={'/user/dashboard/coupons'}>Coupon Codes</Link></li>
+            <li><Link  className="hover:text-white" to={'/user/dashboard/contact'}>Contact Us</Link></li>
+            
           </ul>
         </div>
 

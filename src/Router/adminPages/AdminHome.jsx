@@ -106,7 +106,7 @@ const AdminHome = () => {
           </Link>
           <Link
             to="/admin/dashboard/manage-contact-messages"
-            className="bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-yellow-600"
+            className="bg-blue-950 text-white px-4 py-2 rounded-md hover:bg-yellow-600"
           >
 manage contact messages
           </Link>

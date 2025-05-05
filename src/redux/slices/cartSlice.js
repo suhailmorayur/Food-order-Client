@@ -1,4 +1,3 @@
-// src/redux/slices/cartSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -18,7 +17,7 @@ export const addToCart = createAsyncThunk(
           { foodId, quantity },
           { withCredentials: true }
         );
-        return response.data; // optionally return response if needed
+        return response.data; 
       } catch (err) {
         return rejectWithValue(err.response?.data?.message || err.message);
       }
@@ -92,7 +91,6 @@ const cartSlice = createSlice({
       })
       .addCase(addToCart.fulfilled, (state) => {
         state.loading = false;
-        // Optionally you can trigger fetchCart again or update items here
       })
       .addCase(addToCart.rejected, (state, action) => {
         state.loading = false;
@@ -105,7 +103,6 @@ const cartSlice = createSlice({
           item.quantity = quantity;
         }
       
-        // Optionally recalculate totalAmount and finalAmount
         state.totalAmount = state.items.reduce((acc, item) => acc + item.food.price * item.quantity, 0);
         state.finalAmount = state.totalAmount - state.discount;
       })
@@ -114,7 +111,6 @@ const cartSlice = createSlice({
         const foodId = action.payload;
         state.items = state.items.filter((item) => item.food._id !== foodId);
       
-        // Recalculate totals
         state.totalAmount = state.items.reduce((acc, item) => acc + item.food.price * item.quantity, 0);
         state.finalAmount = state.totalAmount - state.discount;
       })
