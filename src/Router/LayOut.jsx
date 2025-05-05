@@ -1,12 +1,12 @@
 import React from 'react';
 import { Outlet } from "react-router";
-import Navbar from '../components/Navbar';
+import NavBar from '../components/NavBar.jsx';
 
 function LayOut(props) {
     return (
        <>
        <header>
-<Navbar/>
+<NavBar/>
        </header>
        <Outlet />
        <footer></footer>

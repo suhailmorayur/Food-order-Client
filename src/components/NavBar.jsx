@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-function Navbar(props) {
+function NavBar(props) {
     return (
 <div className=' bg-gray-800'>
     <nav className="flex items-center justify-between p-4 text-white max-w-screen-xl mx-auto">
@@ -52,4 +52,4 @@ function Navbar(props) {
     );
 }
 
-export default Navbar;
+export default NavBar;
