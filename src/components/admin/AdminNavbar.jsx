@@ -16,12 +16,8 @@ const AdminNavbar = () => {
   };
 
   const navLinks = [
-    { name: 'Profile', to: '/admin/profile' },
     { name: 'Add Foods', to: 'addfoods' },
-    { name: 'Foods List', to: 'footlist' },
     { name: 'Add Restaurants', to: 'add-restaurant' },
-    { name: 'Get Users', to: '/admin/users' },
-    { name: 'Restaurant List', to: 'restaurant-list' },
   ];
 
   const getLinkClass = ({ isActive }) =>
